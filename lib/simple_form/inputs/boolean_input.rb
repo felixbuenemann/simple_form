@@ -13,6 +13,10 @@ module SimpleForm
       end
 
       def label_input
+        [:input_html, :label_html].each do |key|
+          options[key] ||= {}
+          options[key].merge! options.fetch(:label_input_html, {})
+        end
         if options[:label] == false
           input
         elsif nested_boolean_style?
